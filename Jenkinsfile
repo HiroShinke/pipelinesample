@@ -4,15 +4,14 @@ pipeline {
         stage('build') {
             steps {
                 sh 'mvn --version'
-                sh 'mvn compile'
-                sh 'mvn test'
+                sh 'mvn package'
             }
         }
     }
     post {
         always {
-            echo 'This will always run'
-            junit 'build/reports/**/*.xml'
+            archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
+            junit 'target/surefire-reports/**/*.xml
         }
         success {
             echo 'This will run only if successful'
