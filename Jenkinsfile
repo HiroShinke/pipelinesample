@@ -12,9 +12,15 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'target/**/*.jar', fingerprint: true
             junit 'target/surefire-reports/**/*.xml'
+            deleteDir() /* clean up our workspace */
+
         }
         success {
             echo 'This will run only if successful'
+            mail to: 'hiro.shinke@gmail.com',
+                 subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Congratuation!! with ${env.BUILD_URL}"
+
         }
         failure {
             echo 'This will run only if failed'
