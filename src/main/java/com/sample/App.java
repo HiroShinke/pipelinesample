@@ -10,6 +10,7 @@ public class App
     {
         System.out.println( "Hello Jenkins!!" );
         System.out.println( "Hello Notifications!!" );
+        System.out.println( "Hello Notifications2!!" );
         System.out.println( "Hello World!" );
     }
 }
