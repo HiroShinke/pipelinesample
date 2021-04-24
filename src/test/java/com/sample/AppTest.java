@@ -42,5 +42,12 @@ public class AppTest
 	assertThat( app.concatString("a","b"), is("ab"));
 	assertThat( app.concatString("a","bc"), is("abc"));
     }
+
+
+    @Test
+    public void testFail()
+    {
+	fail();
+    }
     
 }
