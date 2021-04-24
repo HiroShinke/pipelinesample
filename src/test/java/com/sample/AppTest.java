@@ -36,8 +36,8 @@ public class AppTest
 
 	App app = new App();
 
-	assertTrue( app.addValues(10,20) == 30 );
-	assertTrue( app.concatString("a","b") == "ab");
+	assertThat( app.addValues(10,20), is(30) );
+	assertThat( app.concatString("a","b"), is("ab"));
 
 	assertTrue( true );
     }
