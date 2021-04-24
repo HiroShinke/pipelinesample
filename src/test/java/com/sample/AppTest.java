@@ -43,11 +43,10 @@ public class AppTest
 	assertThat( app.concatString("a","bc"), is("abc"));
     }
 
-
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testFail()
     {
-	fail();
+	throw new IllegalArgumentException("something wrong");
     }
     
 }
