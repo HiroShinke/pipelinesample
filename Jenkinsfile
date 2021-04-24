@@ -7,6 +7,12 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('deploy') {
+            steps {
+                sh './deploywork.sh'
+            }
+        }
+    }
     }
     post {
         always {
