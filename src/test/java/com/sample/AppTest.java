@@ -4,6 +4,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import static org.hamcrest.core.Is.*;
+import static org.junit.Assert.*;
+
 /**
  * Unit test for simple App.
  */
