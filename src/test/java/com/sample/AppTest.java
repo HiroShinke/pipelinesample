@@ -41,7 +41,26 @@ public class AppTest
 
 	assertThat( app.addValues(10,20), is(30) );
 	assertThat( app.concatString("a","b"), is("ab"));
-
-	assertTrue( true );
     }
+
+    @Test
+    public void testAddition()
+    {
+
+	App app = new App();
+
+	assertThat( app.addValues(10,20), is(30) );
+	assertThat( app.addValues(10,30), is(40) );
+    }
+
+    @Test
+    public void testConcatenation()
+    {
+
+	App app = new App();
+
+	assertThat( app.concatString("a","b"), is("ab"));
+	assertThat( app.concatString("a","bc"), is("abc"));
+    }
+    
 }
