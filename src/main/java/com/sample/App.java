@@ -14,4 +14,13 @@ public class App
         System.out.println( "Hello Notifications2!!" );
         System.out.println( "Hello World!" );
     }
+
+    public int addValues(int x, int y){
+	return x + y;
+    }
+
+    public String concatString(String x, String y){
+	return x + y;
+    }
+
 }

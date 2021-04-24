@@ -33,6 +33,12 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+
+	App app = new App();
+
+	assertTrue( app.addValues(10,20) == 30 );
+	assertTrue( app.concatString("a","b") == "ab");
+
+	assertTrue( true );
     }
 }
