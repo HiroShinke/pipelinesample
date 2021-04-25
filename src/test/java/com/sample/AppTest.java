@@ -6,8 +6,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
+import org.junit.rules.TestName;
+import org.junit.rules.ErrorCollector;
+import org.junit.rules.Timeout;
 
 import java.io.File;
+import java.util.List;
+import java.util.Arrays;
 import org.apache.commons.io.FileUtils;
 import java.io.IOException;
 
@@ -20,6 +25,16 @@ public class AppTest
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
 
+    @Rule
+    public TestName name = new TestName();
+
+    @Rule
+    public ErrorCollector collector = new ErrorCollector();
+
+    @Rule
+    public Timeout globalTimeout = new Timeout(5000);
+    
+
     /**
      * Rigourous Test :-)
      */
@@ -28,7 +43,7 @@ public class AppTest
     {
 
 	App app = new App();
-
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
 	assertThat( app.addValues(10,20), is(30) );
 	assertThat( app.concatString("a","b"), is("ab"));
     }
@@ -38,7 +53,7 @@ public class AppTest
     {
 
 	App app = new App();
-
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
 	assertThat( app.addValues(10,20), is(30) );
 	assertThat( app.addValues(10,30), is(40) );
     }
@@ -48,7 +63,7 @@ public class AppTest
     {
 
 	App app = new App();
-
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
 	assertThat( app.concatString("a","b"), is("ab"));
 	assertThat( app.concatString("a","bc"), is("abc"));
     }
@@ -56,11 +71,14 @@ public class AppTest
     @Test(expected = IllegalArgumentException.class)
     public void testFail()
     {
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
 	throw new IllegalArgumentException("something wrong");
     }
     
     @Test
     public void fileCreatedAndWrittenSuccessfully()  throws IOException {
+
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
 	File file = tempFolder.newFile("sample.txt");
 	FileUtils.writeStringToFile(file, "JUnit Rocks!");
 	String line = FileUtils.readFileToString(file);
@@ -68,4 +86,40 @@ public class AppTest
     }
 
 
+    @Test
+    public void variousTest() {
+
+	String s = null;
+	collector.checkThat("This must be null", null, is(s));
+
+	s = "abcde";
+	collector.checkThat("This must be null", "abcde", is(s));
+
+    }
+
+    @Test
+    public void loopTestFibo(){
+
+	System.out.println("TEST NAME IS!: " + name.getMethodName());
+
+	int values[][] = {
+	    {0,0},
+	    {1,1},
+	    {2,1},
+	    {3,2},
+	    {4,3},
+	    {5,5},
+	    {6,8}
+	};
+
+	App app = new App();
+	
+	for (int m[]: values) {
+	    int a = m[0];
+	    int b = m[1];
+	    collector.checkThat(app.fibo(a),is(b));
+	}
+
+    }
+    
 }
