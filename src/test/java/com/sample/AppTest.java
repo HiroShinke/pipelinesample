@@ -4,12 +4,22 @@ package com.sample;
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import java.io.IOException;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
 {
+
+    @Rule
+    public TemporaryFolder tempFolder = new TemporaryFolder();
+
     /**
      * Rigourous Test :-)
      */
@@ -49,4 +59,13 @@ public class AppTest
 	throw new IllegalArgumentException("something wrong");
     }
     
+    @Test
+    public void fileCreatedAndWrittenSuccessfully()  throws IOException {
+	File file = tempFolder.newFile("sample.txt");
+	FileUtils.writeStringToFile(file, "JUnit Rocks!");
+	String line = FileUtils.readFileToString(file);
+	assertThat(line, is("JUnit Rocks!"));
+    }
+
+
 }
