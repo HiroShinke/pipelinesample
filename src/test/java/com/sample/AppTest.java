@@ -10,6 +10,9 @@ import org.junit.rules.TestName;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.Timeout;
 
+import org.junit.experimental.categories.Category;
+
+
 import java.io.File;
 import java.util.List;
 import java.util.Arrays;
@@ -39,6 +42,7 @@ public class AppTest
      * Rigourous Test :-)
      */
     @Test
+    @Category(Simple.class)
     public void testApp()
     {
 
@@ -49,6 +53,7 @@ public class AppTest
     }
 
     @Test
+    @Category(Simple.class)
     public void testAddition()
     {
 
@@ -59,6 +64,7 @@ public class AppTest
     }
 
     @Test
+    @Category(Simple.class)
     public void testConcatenation()
     {
 
@@ -69,6 +75,7 @@ public class AppTest
     }
 
     @Test(expected = IllegalArgumentException.class)
+    @Category(Simple.class)
     public void testFail()
     {
 	System.out.println("TEST NAME IS!: " + name.getMethodName());
@@ -76,6 +83,7 @@ public class AppTest
     }
     
     @Test
+    @Category(Complicated.class)
     public void fileCreatedAndWrittenSuccessfully()  throws IOException {
 
 	System.out.println("TEST NAME IS!: " + name.getMethodName());
@@ -87,6 +95,7 @@ public class AppTest
 
 
     @Test
+    @Category(Simple.class)
     public void variousTest() {
 
 	String s = null;
@@ -98,6 +107,7 @@ public class AppTest
     }
 
     @Test
+    @Category(Complicated.class)
     public void loopTestFibo(){
 
 	System.out.println("TEST NAME IS!: " + name.getMethodName());
